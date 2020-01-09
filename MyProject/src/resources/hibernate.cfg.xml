@@ -5,13 +5,16 @@
  
 <hibernate-configuration>
     <session-factory>
-		<property name="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:jtds:sqlserver://localhost/SQLEXPRESS;Database=myBDD;Trusted_Connection=True</property>
+		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+		<property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;instance=SQLEXPRESS;databaseName=myBDD</property>
 		<property name="hibernate.connection.username">sa</property>
-		<property name="hibernate.connection.password">1234</property>
+		<property name="hibernate.connection.password">Password1234*</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<mapping resource="com.myproject.rest.model /> 
+		<mapping class="com.myproject.rest.model.Auteur" />
+		<mapping class="com.myproject.rest.model.Manga" />
+		<mapping class="com.myproject.rest.model.Tome" />
+		<mapping class="com.myproject.rest.model.Chapitre" />
 	</session-factory>
 </hibernate-configuration>

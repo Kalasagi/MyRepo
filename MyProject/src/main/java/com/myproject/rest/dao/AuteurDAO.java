@@ -7,7 +7,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Repository;
 
 import com.myproject.rest.model.Auteur;
@@ -15,23 +15,33 @@ import com.myproject.rest.model.Auteur;
 @Repository
 public class AuteurDAO {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-
 	public Auteur findById(final Long id) {
 
-		return sessionFactory.getCurrentSession().get(Auteur.class, id);
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+
+		Auteur auteur = null;
+
+		try (Session session = sessionFactory.openSession()) {
+			auteur = session.get(Auteur.class, id);
+		}
+
+		return auteur;
 	}
 
 	public List<Auteur> findAll() {
 
-		Session session = sessionFactory.getCurrentSession();
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
-		CriteriaBuilder builder = session.getCriteriaBuilder();
-		CriteriaQuery<Auteur> criteria = builder.createQuery(Auteur.class);
-		criteria.from(Auteur.class);
+		List<Auteur> list = null;
 
-		return session.createQuery(criteria).getResultList();
+		try (Session session = sessionFactory.openSession()) {
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Auteur> criteria = builder.createQuery(Auteur.class);
+			criteria.from(Auteur.class);
+			list = session.createQuery(criteria).getResultList();
+		}
+
+		return list;
 	}
 
 	public Long create(final Auteur resource) {

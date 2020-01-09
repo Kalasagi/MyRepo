@@ -1,4 +1,4 @@
-package com.myproject.rest.model;
+package com.myproject.rest.model.key;
 
 import java.io.Serializable;
 import java.util.Objects;

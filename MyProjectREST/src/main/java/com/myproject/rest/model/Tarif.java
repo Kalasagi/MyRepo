@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
+import com.myproject.rest.model.key.TarifId;
+
 @Entity
 public class Tarif {
 

@@ -22,12 +22,15 @@ public class Manga {
 	private String		nom;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "auteur_id")
+	@JoinColumn(name = "auteurId")
 	private Auteur		auteur;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "manga_id")
+	@JoinColumn(name = "mangaId")
 	private List<Tome>	tomes;
+
+	@OneToMany(mappedBy = "manga")
+	private List<Tarif>	tarifs;
 
 	public Manga() {
 

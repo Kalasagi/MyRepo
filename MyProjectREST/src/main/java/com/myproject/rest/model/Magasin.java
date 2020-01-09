@@ -6,21 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Chapitre {
+public class Magasin {
 
 	@Id
 	@GeneratedValue
 	private Long	id;
 
 	@Column
-	private String	titre;
-
-	@Column
-	private String	numero;
-
-	public Chapitre() {
-
-	}
+	private String	nom;
 
 	public Long getId() {
 		return id;
@@ -30,20 +23,12 @@ public class Chapitre {
 		this.id = id;
 	}
 
-	public String getTitre() {
-		return titre;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setTitre(final String titre) {
-		this.titre = titre;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(final String numero) {
-		this.numero = numero;
+	public void setNom(final String nom) {
+		this.nom = nom;
 	}
 
 }

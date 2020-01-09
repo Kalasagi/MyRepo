@@ -16,5 +16,7 @@
 		<mapping class="com.myproject.rest.model.Manga" />
 		<mapping class="com.myproject.rest.model.Tome" />
 		<mapping class="com.myproject.rest.model.Chapitre" />
+		<mapping class="com.myproject.rest.model.Magasin" />
+		<mapping class="com.myproject.rest.model.Tarif" />
 	</session-factory>
 </hibernate-configuration>

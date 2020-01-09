@@ -1,5 +1,6 @@
 package com.myproject.rest.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,13 +19,16 @@ public class Tome {
 	private Long	id;
 
 	@Column
-	private String	Titre;
+	private String	titre;
 
 	@Column
-	private String	Numero;
+	private String	numero;
+
+	@Column
+	private Date	dateDeSortie;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "tome_id")
+	@JoinColumn(name = "tomeId")
 	List<Chapitre>	chapitres;
 
 	public Tome() {
@@ -40,19 +44,19 @@ public class Tome {
 	}
 
 	public String getTitre() {
-		return Titre;
+		return titre;
 	}
 
 	public void setTitre(final String titre) {
-		Titre = titre;
+		this.titre = titre;
 	}
 
 	public String getNumero() {
-		return Numero;
+		return numero;
 	}
 
 	public void setNumero(final String numero) {
-		Numero = numero;
+		this.numero = numero;
 	}
 
 	public List<Chapitre> getChapitres() {
@@ -61,6 +65,14 @@ public class Tome {
 
 	public void setChapitres(final List<Chapitre> chapitres) {
 		this.chapitres = chapitres;
+	}
+
+	public Date getDateDeSortie() {
+		return dateDeSortie;
+	}
+
+	public void setDateDeSortie(final Date dateDeSortie) {
+		this.dateDeSortie = dateDeSortie;
 	}
 
 }

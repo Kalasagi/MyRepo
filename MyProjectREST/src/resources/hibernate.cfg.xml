@@ -11,10 +11,12 @@
 		<property name="hibernate.connection.password">Password1234*</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
 		<property name="hibernate.show_sql">true</property>
-		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.hbm2ddl.auto">create-drop</property>
 		<mapping class="com.myproject.rest.model.Auteur" />
 		<mapping class="com.myproject.rest.model.Manga" />
 		<mapping class="com.myproject.rest.model.Tome" />
 		<mapping class="com.myproject.rest.model.Chapitre" />
+		<mapping class="com.myproject.rest.model.Magasin" />
+		<mapping class="com.myproject.rest.model.Tarif" />
 	</session-factory>
 </hibernate-configuration>

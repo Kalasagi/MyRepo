@@ -6,10 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Auteur {
+public class Manga {
 
 	@Id
 	@GeneratedValue
@@ -18,20 +20,16 @@ public class Auteur {
 	@Column
 	private String		nom;
 
-	@Column
-	private String		prenom;
+	@ManyToOne
+	@JoinColumn(name = "auteur_id")
+	private Auteur		auteur;
 
-	@OneToMany(mappedBy = "auteur")
-	private List<Manga>	mangas;
+	@OneToMany
+	@JoinColumn(name = "manga_id")
+	private List<Tome>	tomes;
 
-	public Auteur() {
+	public Manga() {
 
-	}
-
-	public Auteur(final Long id, final String nom, final String prenom) {
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
 	}
 
 	public Long getId() {
@@ -50,19 +48,19 @@ public class Auteur {
 		this.nom = nom;
 	}
 
-	public String getPrenom() {
-		return prenom;
+	public Auteur getAuteur() {
+		return auteur;
 	}
 
-	public void setPrenom(final String prenom) {
-		this.prenom = prenom;
+	public void setAuteur(final Auteur auteur) {
+		this.auteur = auteur;
 	}
 
-	public List<Manga> getMangas() {
-		return mangas;
+	public List<Tome> getTomes() {
+		return tomes;
 	}
 
-	public void setMangas(final List<Manga> mangas) {
-		this.mangas = mangas;
+	public void setTomes(final List<Tome> tomes) {
+		this.tomes = tomes;
 	}
 }

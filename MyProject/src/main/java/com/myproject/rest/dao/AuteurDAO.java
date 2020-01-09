@@ -1,64 +1,48 @@
 package com.myproject.rest.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.myproject.rest.model.Auteur;
 
 @Repository
 public class AuteurDAO {
-	private static List<Auteur>	auteurs	= new ArrayList<>();
 
-	Long						freeId	= 4L;
-
-	static {
-		auteurs.add(new Auteur(1L, "Lokesh", "Gupta"));
-		auteurs.add(new Auteur(2L, "Alex", "Kolenchiskey"));
-		auteurs.add(new Auteur(3L, "David", "Kameron"));
-	}
-
-	public List<Auteur> findAll() {
-		return auteurs;
-	}
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public Auteur findById(final Long id) {
 
-		for (Auteur auteur : auteurs) {
-			if (auteur.getId().equals(id)) {
-				return auteur;
-			}
-		}
+		return sessionFactory.getCurrentSession().get(Auteur.class, id);
+	}
 
-		return null;
+	public List<Auteur> findAll() {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Auteur> criteria = builder.createQuery(Auteur.class);
+		criteria.from(Auteur.class);
+
+		return session.createQuery(criteria).getResultList();
 	}
 
 	public Long create(final Auteur resource) {
-
-		Long id = freeId++;
-		resource.setId(id);
-		auteurs.add(resource);
-
-		return id;
+		return null;
 	}
 
 	public void update(final Auteur resource) {
 
-		deleteById(resource.getId());
-		auteurs.add(resource);
 	}
 
 	public void deleteById(final Long id) {
 
-		List<Auteur> rmLst = new ArrayList<>();
-
-		for (Auteur auteur : auteurs) {
-			if (auteur.getId().equals(id)) {
-				rmLst.add(auteur);
-			}
-		}
-
-		auteurs.removeAll(rmLst);
 	}
 }

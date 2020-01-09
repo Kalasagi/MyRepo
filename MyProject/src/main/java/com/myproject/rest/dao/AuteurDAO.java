@@ -6,22 +6,19 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Repository;
 
 import com.myproject.rest.model.Auteur;
+import com.myproject.rest.util.HibernateUtil;
 
 @Repository
 public class AuteurDAO {
 
 	public Auteur findById(final Long id) {
 
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-
 		Auteur auteur = null;
 
-		try (Session session = sessionFactory.openSession()) {
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			auteur = session.get(Auteur.class, id);
 		}
 
@@ -30,29 +27,41 @@ public class AuteurDAO {
 
 	public List<Auteur> findAll() {
 
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		List<Auteur> res = null;
 
-		List<Auteur> list = null;
-
-		try (Session session = sessionFactory.openSession()) {
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Auteur> criteria = builder.createQuery(Auteur.class);
 			criteria.from(Auteur.class);
-			list = session.createQuery(criteria).getResultList();
+			res = session.createQuery(criteria).getResultList();
 		}
 
-		return list;
+		return res;
 	}
 
 	public Long create(final Auteur resource) {
-		return null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
+			session.save(resource);
+			session.getTransaction().commit();
+		}
+		return resource.getId();
 	}
 
 	public void update(final Auteur resource) {
-
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
+			session.update(resource);
+			session.getTransaction().commit();
+		}
 	}
 
 	public void deleteById(final Long id) {
-
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			session.beginTransaction();
+			Auteur auteur = session.load(Auteur.class, id);
+			session.delete(auteur);
+			session.getTransaction().commit();
+		}
 	}
 }

@@ -31,13 +31,13 @@ public class AuteurController {
 
 	@GetMapping(value = "/{id}")
 	public Auteur findById(@PathVariable("id") final Long id) {
-		return auteurDao.findById(id);
+		return auteurDao.findOne(id);
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Long create(@RequestBody final Auteur resource) {
-		return auteurDao.create(resource);
+		return auteurDao.create(resource).getId();
 	}
 
 	@PutMapping(value = "/{id}")

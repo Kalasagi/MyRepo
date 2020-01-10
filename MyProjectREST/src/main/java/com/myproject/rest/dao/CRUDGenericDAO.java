@@ -9,15 +9,15 @@ import org.hibernate.Session;
 
 import com.myproject.rest.util.HibernateUtil;
 
-public class GenericDAO<T> {
+public class CRUDGenericDAO<T> {
 
 	private final Class<T> clazzT;
 
-	public GenericDAO() {
+	public CRUDGenericDAO() {
 		clazzT = null;
 	}
 
-	public GenericDAO(final Class<T> clazzT) {
+	public CRUDGenericDAO(final Class<T> clazzT) {
 		this.clazzT = clazzT;
 	}
 

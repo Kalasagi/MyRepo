@@ -6,6 +6,10 @@ import com.myproject.rest.model.Auteur;
 
 @Repository
 public class AuteurDAO
-	extends GenericDAO<Auteur> {
+	extends CRUDGenericDAO<Auteur> {
+
+	public AuteurDAO() {
+		super(Auteur.class);
+	}
 
 }

@@ -16,7 +16,11 @@ import com.myproject.rest.util.HibernateUtil;
 
 @Repository
 public class MangaDAO
-	extends GenericDAO<Manga> {
+	extends CRUDGenericDAO<Manga> {
+
+	public MangaDAO() {
+		super(Manga.class);
+	}
 
 	public List<Manga> findUpcoming() {
 

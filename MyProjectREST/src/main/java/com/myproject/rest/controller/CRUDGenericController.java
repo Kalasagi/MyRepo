@@ -17,7 +17,7 @@ import com.myproject.rest.dao.CRUDGenericDAO;
 public class CRUDGenericController<T> {
 
 	@Autowired
-	private CRUDGenericDAO<T> crudDao;
+	protected CRUDGenericDAO<T> crudDao;
 
 	@GetMapping
 	public List<T> findAll() {

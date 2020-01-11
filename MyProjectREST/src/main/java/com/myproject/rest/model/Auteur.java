@@ -2,6 +2,7 @@ package com.myproject.rest.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,25 +16,12 @@ public class Auteur {
 	@Id
 	@GeneratedValue
 	private Long		id;
-
+	
 	@Column
-	private String		nom;
+	private String		pseudo;
 
-	@Column
-	private String		prenom;
-
-	@OneToMany(mappedBy = "auteur", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "auteur", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Manga>	mangas;
-
-	public Auteur() {
-
-	}
-
-	public Auteur(final Long id, final String nom, final String prenom) {
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-	}
 
 	public Long getId() {
 		return id;
@@ -43,21 +31,6 @@ public class Auteur {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(final String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(final String prenom) {
-		this.prenom = prenom;
-	}
 
 	public List<Manga> getMangas() {
 		return mangas;
@@ -66,4 +39,14 @@ public class Auteur {
 	public void setMangas(final List<Manga> mangas) {
 		this.mangas = mangas;
 	}
+
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+	
+	
 }

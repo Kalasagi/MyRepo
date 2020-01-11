@@ -2,6 +2,7 @@ package com.myproject.rest.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,15 +22,15 @@ public class Manga {
 	@Column
 	private String		nom;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
 	@JoinColumn(name = "auteurId")
 	private Auteur		auteur;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "mangaId")
 	private List<Tome>	tomes;
 
-	@OneToMany(mappedBy = "manga")
+	@OneToMany(mappedBy = "manga", cascade = CascadeType.ALL)
 	private List<Tarif>	tarifs;
 
 	public Manga() {

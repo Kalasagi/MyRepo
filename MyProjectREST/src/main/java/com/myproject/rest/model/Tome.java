@@ -3,6 +3,7 @@ package com.myproject.rest.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+/**
+ * @author Kalasagi
+ *
+ */
 @Entity
 public class Tome {
 
@@ -23,11 +28,17 @@ public class Tome {
 
 	@Column
 	private String	numero;
+	
+	@Column(length = 4000)
+	private String		synopsis;
 
 	@Column
-	private Date	dateDeSortie;
+	private Date	dateDeSortieFR;
+	
+	@Column
+	private Date	dateDeSortieJPN;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "tomeId")
 	List<Chapitre>	chapitres;
 
@@ -67,12 +78,29 @@ public class Tome {
 		this.chapitres = chapitres;
 	}
 
-	public Date getDateDeSortie() {
-		return dateDeSortie;
+	public Date getDateDeSortieFR() {
+		return dateDeSortieFR;
 	}
 
-	public void setDateDeSortie(final Date dateDeSortie) {
-		this.dateDeSortie = dateDeSortie;
+	public void setDateDeSortieFR(Date dateDeSortieFR) {
+		this.dateDeSortieFR = dateDeSortieFR;
 	}
 
+	public Date getDateDeSortieJPN() {
+		return dateDeSortieJPN;
+	}
+
+	public void setDateDeSortieJPN(Date dateDeSortieJPN) {
+		this.dateDeSortieJPN = dateDeSortieJPN;
+	}
+
+	public String getSynopsis() {
+		return synopsis;
+	}
+
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
+	
+	
 }

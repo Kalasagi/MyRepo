@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -41,6 +42,10 @@ public class Tome {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "tomeId")
 	List<Chapitre>	chapitres;
+
+	@ManyToOne(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+	@JoinColumn(name = "mangaId")
+	private Manga		manga;
 
 	public Tome() {
 
@@ -101,6 +106,12 @@ public class Tome {
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
 	}
-	
-	
+
+	public Manga getManga() {
+		return manga;
+	}
+
+	public void setManga(Manga manga) {
+		this.manga = manga;
+	}
 }

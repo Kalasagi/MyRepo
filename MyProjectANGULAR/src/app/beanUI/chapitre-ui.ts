@@ -1,6 +1,3 @@
-import { ChapitreUI } from './chapitre-ui';
-import { MangaUI } from './manga-ui';
-
 export interface TomeUI {
 
     id:number;
@@ -9,6 +6,6 @@ export interface TomeUI {
     synopsis:string;
     dateDeSortieFR: Date;
     dateDeSortieJPN:Date;
-    manga:MangaUI;
-    chapitres:Array<ChapitreUI>;
+    manga:Manga;
+    chapitres:Array<Chapitre>;
 }

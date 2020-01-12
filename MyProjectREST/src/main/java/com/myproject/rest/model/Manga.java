@@ -26,8 +26,7 @@ public class Manga {
 	@JoinColumn(name = "auteurId")
 	private Auteur		auteur;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "mangaId")
+	@OneToMany(mappedBy = "manga", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Tome>	tomes;
 
 	@OneToMany(mappedBy = "manga", cascade = CascadeType.ALL)

@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UpcomingComponent } from './forms/upcoming/upcoming.component';
+import { UpcomingComponent } from './form/upcoming/upcoming.component';
 
 @NgModule({
   declarations: [
